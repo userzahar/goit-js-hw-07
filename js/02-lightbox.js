@@ -3,8 +3,6 @@ import { galleryItems } from './gallery-items.js';
 
 const galleryContainer = document.querySelector(".gallery");
 
-galleryContainer.addEventListener("click", onGalleryClick);
-
 function fillGalleryBox(itemsArr) {
   const image = itemsArr.map(img => {
     return `
@@ -15,21 +13,12 @@ function fillGalleryBox(itemsArr) {
     </div>`
 }).join('');
   galleryContainer.innerHTML = image;
-}
-
-function onGalleryClick(events) {
-    events.preventDefault();
-    const { target } = events;
-    if (target.nodeName !== "IMG") {
-        return;
-    } 
-    var lightbox = new SimpleLightbox('.gallery a', {
-        captionSelector: '.gallery__image',
-        captionsData: 'alt',
-        captionDelay: 250,
-    });
+  const lightbox = new SimpleLightbox('.gallery a', {
+    captionSelector: '.gallery__image',
+    captionsData: 'alt',
+    captionDelay: 250,
+  });
 }
 
 fillGalleryBox(galleryItems);
 
-console.log(galleryItems);
